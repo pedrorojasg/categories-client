@@ -19,7 +19,7 @@ export class CategoriesComponent implements OnInit {
 
   getCategories(): void {
     this.categoryService.getCategories()
-    .subscribe(categories => this.categories = categories._embedded.categories);
+    .subscribe(categories => this.categories = categories);
   }
 
   add(name: string, abbreviation: string, message: string): void {

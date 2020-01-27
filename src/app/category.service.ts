@@ -26,8 +26,9 @@ export class CategoryService {
 
   /** GET Categories from the server */
   getCategories (): Observable<Category[]> {
-    return this.http.get<Category[]>(this.CategoriesUrl, httpOptions)
-      .pipe(
+    return this.http.get<any>(this.CategoriesUrl, httpOptions)
+    .pipe(
+        map(response=>response._embedded.categories),
         tap(_ => this.log('fetched Categories')),
         catchError(this.handleError<Category[]>('getCategories', []))
       );
@@ -36,7 +37,7 @@ export class CategoryService {
   /** GET category by id. Return `undefined` when id not found */
   getCategoryNo404<Data>(id: string): Observable<Category> {
     const url = `${this.CategoriesUrl}/?id=${id}`;
-    return this.http.get<Category[]>(url)
+    return this.http.get<any>(url)
       .pipe(
         map(Categories => Categories[0]), // returns a {0|1} element array
         tap(h => {
