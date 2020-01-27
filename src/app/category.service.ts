@@ -56,18 +56,6 @@ export class CategoryService {
     );
   }
 
-  /* GET Categories whose name contains search term */
-  searchCategories(term: string): Observable<Category[]> {
-    if (!term.trim()) {
-      // if not search term, return empty category array.
-      return of([]);
-    }
-    return this.http.get<Category[]>(`${this.CategoriesUrl}/?name=${term}`).pipe(
-      tap(_ => this.log(`found Categories matching "${term}"`)),
-      catchError(this.handleError<Category[]>('searchCategories', []))
-    );
-  }
-
   //////// Save methods //////////
 
   /** POST: add a new category to the server */
