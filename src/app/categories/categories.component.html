@@ -1,0 +1,37 @@
+<h2>New Category</h2>
+<div>
+  <label>Category name:</label>
+  <br>
+  <input #categoryName />
+</div>
+<br>
+<div>
+  <label>Category abbreviation:</label>
+  <br>
+  <input #categoryAbbreviation />
+</div>
+<br>
+<div>
+  <label>Category description:</label>
+  <br>
+  <textarea #categoryMessage></textarea>
+</div>
+<br>
+<div>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(categoryName.value, categoryAbbreviation.value, categoryMessage.value)">
+    add
+  </button>
+</div>
+<br><br>
+
+<h2>My Categories</h2>
+<ul class="heroes">
+  <li *ngFor="let cat of categories">
+      <a routerLink="/detail/{{cat.id}}">
+        <span>&nbsp;&nbsp;&nbsp;{{cat.name}}</span>
+      </a>
+      <button class="delete" title="delete cat" (click)="delete(cat)">X</button>
+  </li>
+</ul>
+

@@ -1,10 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule }             from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { CategoriesComponent }      from './categories/categories.component';
+import { CategoryDetailComponent }  from './category-detail/category-detail.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/categories', pathMatch: 'full' },
+  { path: 'detail/:id', component: CategoryDetailComponent },
+  { path: 'categories', component: CategoriesComponent }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+
